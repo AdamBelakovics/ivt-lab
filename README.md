@@ -1,4 +1,4 @@
-Hello from branch A!
+Hello from branch master!
 
 # IVT Spaceship
 
