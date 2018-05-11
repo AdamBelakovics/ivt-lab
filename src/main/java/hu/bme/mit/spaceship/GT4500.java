@@ -15,6 +15,11 @@ public class GT4500 implements SpaceShip {
     this.secondaryTorpedoStore = new TorpedoStore(10);
   }
 
+  public GT4500(TorpedoStore t1, TorpedoStore t2) {
+    this.primaryTorpedoStore = t1;
+    this.secondaryTorpedoStore = t2;
+  }
+
   public boolean fireLaser(FiringMode firingMode) {
 
     return false;
@@ -51,8 +56,10 @@ public class GT4500 implements SpaceShip {
         }
       }
       else{
-        firingSuccess = primaryTorpedoStore.fire(1) &&
-        secondaryTorpedoStore.fire(1);
+        if(!primaryTorpedoStore.isEmpty())
+          firingSuccess = primaryTorpedoStore.fire(1);
+        if(!secondaryTorpedoStore.isEmpty())
+          firingSuccess = secondaryTorpedoStore.fire(1) || firingSuccess;
       }
 
     return firingSuccess;
